@@ -1,0 +1,7 @@
+#############
+elasticconfig
+secret-v2.yml
+secret*
+.env
+cacert.crt
+kibana.yml

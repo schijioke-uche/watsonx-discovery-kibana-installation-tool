@@ -1,0 +1,10 @@
+# kibana.yml.template
+elasticsearch.ssl.certificateAuthorities: "/usr/share/kibana/config/cacert"
+elasticsearch.username: "${USERNAME}"
+elasticsearch.password: "${PASSWORD}"
+elasticsearch.hosts: ["${ELASTIC_ENDPOINT}"]
+server.name: "kibana"
+server.host: "0.0.0.0"
+monitoring.ui.container.elasticsearch.enabled: "true"
+server.shutdownTimeout: "30s"
+elasticsearch.ssl.verificationMode: full  # none | full | certificate

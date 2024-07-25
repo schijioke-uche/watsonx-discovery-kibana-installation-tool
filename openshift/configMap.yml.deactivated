@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kibana-configmap
+  namespace: elk
+data:
+  ELASTICSEARCH_ENDPOINT: "<required - provide value as https://<username>:<password>@<host>"
+  ELASTICSEARCH_USERNAME: "<required - provide value>"
+  ELASTICSEARCH_PASSWORD: "<required - provide value>"
+  ELASTICSEARCH_HOST: "<required - provide value without https://>"
+  ELASTICSEARCH_PORT: "<required - provide value>"
+  ELASTICSEARCH_TLS_NAME: "<required - provide value>"
+  ELASTICSEARCH_VERSION: "<required - provide value>"
+  ELASTICSEARCH_SSL_VERIFICATIONMODE: "<required - provide value>"
+  kibana.yml: |
+    server.name: "kibana"
+    server.host: "0.0.0.0"
+    server.port: 5601
+    elasticsearch.hosts: ["${ELASTICSEARCH_ENDPOINT}"]
+    elasticsearch.username: "${ELASTICSEARCH_USERNAME}"
+    elasticsearch.password: "${ELASTICSEARCH_PASSWORD}"
+    elasticsearch.ssl.certificateAuthorities: "/usr/share/kibana/config/cacert"
+    elasticsearch.ssl.verificationMode: certificate  # none | full | certificate
+  cacert: |
+    -----BEGIN CERTIFICATE-----
+    <provide your elasticsearch TLS/SSL certificate here - Be careful about indentation on the left>
+    -----END CERTIFICATE-----
